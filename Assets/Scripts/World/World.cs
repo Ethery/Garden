@@ -7,6 +7,11 @@ using UnityEngine.Tilemaps;
 [Serializable]
 public class World
 {
+	public WorldConfig Config => m_config;
 	public Grid Grid;
 	public Tilemap TileMap => Grid.GetComponentInChildren<Tilemap>();
+
+
+	[SerializeField]
+	private WorldConfig m_config;
 }

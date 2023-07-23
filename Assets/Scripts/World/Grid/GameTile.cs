@@ -13,7 +13,10 @@ public class GameTile : Tile
 
 	public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
 	{
-		go.transform.up = Vector3.up;
+		if (go != null)
+		{
+			go.transform.up = Vector3.up;
+		}
 		return base.StartUp(position, tilemap, go);
 	}
 }
