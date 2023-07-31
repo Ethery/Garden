@@ -17,6 +17,7 @@ public class GameTile : Tile
 		{
 			go.transform.up = Vector3.up;
 		}
+
 		return base.StartUp(position, tilemap, go);
 	}
 }

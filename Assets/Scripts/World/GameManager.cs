@@ -7,8 +7,10 @@ public class GameManager : Singleton<GameManager>
 {
 	public World World;
 	public GameTile baseTile;
-	private void Awake()
+
+	protected override void Awake()
 	{
+		base.Awake();
 		World = new World();
 		World.Grid = GetComponent<Grid>();
 		World.TileMap.SetTile(new Vector3Int(0, 0, 0), Instantiate(baseTile));
