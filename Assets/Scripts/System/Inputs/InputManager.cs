@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class InputManager : Singleton<InputManager>
@@ -23,9 +24,10 @@ public class InputManager : Singleton<InputManager>
 
 	public class Input
 	{
-		public static Input CAMERA_MOVE = new Input("CameraMovement", Group.Default);
-		public static Input CAMERA_SPEED_UP = new Input("CameraSpeedUp", Group.Default);
-		public static Input MOUSE_CLICK = new Input("MouseClick", Group.Default);
+		public static Input CAMERA_MOVE = new Input(nameof(CAMERA_MOVE), Group.Default);
+		public static Input CAMERA_SPEED_UP = new Input(nameof(CAMERA_SPEED_UP), Group.Default);
+		public static Input CAMERA_SPEED_CONTROL = new Input(nameof(CAMERA_SPEED_CONTROL), Group.Default);
+		public static Input MOUSE_CLICK = new Input(nameof(MOUSE_CLICK), Group.Default);
 
 		public Input(string name, Group group)
 		{
@@ -136,6 +138,8 @@ public class InputManager : Singleton<InputManager>
 
 	private void OnActionPerformed(InputAction action, InputActionChange actionChange)
 	{
+		if(IsMouseOnUI())
+			return;
 		if(m_inputs.ContainsKey(action.name))
 		{
 			Input input = m_inputs[action.name];
@@ -166,6 +170,12 @@ public class InputManager : Singleton<InputManager>
 		}
 	}
 
+	private bool IsMouseOnUI()
+	{
+		GameObject gameObject = EventSystem.current?.currentSelectedGameObject;
+		return gameObject != null && gameObject.GetComponentInParent<Canvas>() != null;
+	}
+
 	protected override void OnDestroy()
 	{
 		InputSystem.onActionChange -= OnActionChanged;
@@ -173,7 +183,6 @@ public class InputManager : Singleton<InputManager>
 		m_events.Clear();
 		base.OnDestroy();
 	}
-
 
 	private static Dictionary<string, Input> m_inputs = new Dictionary<string, Input>();
 

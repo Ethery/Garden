@@ -1,7 +1,10 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewRulesConfig", menuName = "Game/World/Config/Rules")]
-public class RulesConfig : ScriptableObject
+[Serializable]
+public class RulesConfig
 {
+	[SerializeField]
+	public float SecondsByDay = 10;
 }

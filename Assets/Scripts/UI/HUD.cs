@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +12,29 @@ public class HUD : Singleton<HUD>
 	private void OnEnable()
 	{
 		InputManager.RegisterInput(InputManager.Input.MOUSE_CLICK, new InputManager.InputEvent(OnMouseClick, InputManager.EventType.Performed), true);
+		UpdateCurrentValue();
+	}
+
+	public void IncreaseCurrentValue(int valueToAdd)
+	{
+		currentValue += valueToAdd;
+		UpdateCurrentValue();
+	}
+
+	public void SetCurrentValue(int valueToAdd)
+	{
+		currentValue = valueToAdd;
+		UpdateCurrentValue();
+	}
+
+	private void UpdateCurrentValue()
+	{
+		if(currentValue < 0)
+			currentValue = 5;
+		if(currentValue > 5)
+			currentValue = 0;
+
+		m_currentValueText.text = currentValue + string.Empty;
 	}
 
 	private void OnMouseClick(InputAction input)
@@ -44,6 +68,10 @@ public class HUD : Singleton<HUD>
 		}
 	}
 
+	[SerializeField]
+	private TextMeshProUGUI m_currentValueText;
+
+	private int currentValue;
 	private RaycastHit hit;
 	private Ray ray;
 }

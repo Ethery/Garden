@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -6,13 +7,18 @@ using UnityEngine.Tilemaps;
 public class GameManager : Singleton<GameManager>
 {
 	public World World;
+
+	public WorldConfig WorldConfig => m_config;
+
 	public GameTile baseTile;
 
 	protected override void Awake()
 	{
 		base.Awake();
-		World = new World();
-		World.Grid = GetComponent<Grid>();
+		World = new World(GetComponent<Grid>());
 		World.TileMap.SetTile(new Vector3Int(0, 0, 0), Instantiate(baseTile));
 	}
+
+	[SerializeField]
+	private WorldConfig m_config;
 }

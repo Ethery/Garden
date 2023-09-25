@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class WorldConfig : ScriptableObject
 {
 	public RulesConfig Rules => m_rules;
+
 	public InputActionAsset Inputs => m_inputsConfig;
 
 

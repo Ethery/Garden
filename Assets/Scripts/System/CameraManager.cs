@@ -6,10 +6,6 @@ using UnityEngine.InputSystem.LowLevel;
 
 public class CameraManager : Singleton<CameraManager>
 {
-	public float CameraSpeed = 5.0f;
-
-	public float CameraSpeedMultiplier = 2.0f;
-
 	private void OnEnable()
 	{
 		RegisterInputs(true);
@@ -24,6 +20,9 @@ public class CameraManager : Singleton<CameraManager>
 		InputManager.RegisterInput(InputManager.Input.CAMERA_SPEED_UP,
 									new InputManager.InputEvent(OnCameraSpeedUp, InputManager.EventType.Performed | InputManager.EventType.Released)
 									, register);
+		InputManager.RegisterInput(InputManager.Input.CAMERA_SPEED_CONTROL,
+									new InputManager.InputEvent(OnCameraSpeedControl, InputManager.EventType.Performed | InputManager.EventType.Released)
+									, register);
 	}
 
 
@@ -31,9 +30,18 @@ public class CameraManager : Singleton<CameraManager>
 	{
 		wantedMovement = action.ReadValue<Vector2>();
 	}
+
 	public void OnCameraSpeedUp(InputAction action)
 	{
 		speedUp = action.ReadValue<float>() > 0f;
+	}
+
+	public void OnCameraSpeedControl(InputAction action)
+	{
+		float actionValue = action.ReadValue<float>();
+		actionValue = Mathf.Clamp(actionValue, -0.2f, 0.2f);
+		m_cameraBaseSpeed += actionValue;
+		m_cameraBaseSpeed = Mathf.Clamp(m_cameraBaseSpeed, m_cameraMinSpeed, m_cameraMaxSpeed);
 	}
 
 	private void FixedUpdate()
@@ -42,8 +50,8 @@ public class CameraManager : Singleton<CameraManager>
 		{
 			Vector3 newPosition = transform.position;
 
-			newPosition.x += wantedMovement.x * Time.deltaTime * (speedUp ? CameraSpeedMultiplier : 1);
-			newPosition.z += wantedMovement.y * Time.deltaTime * (speedUp ? CameraSpeedMultiplier : 1);
+			newPosition.x += wantedMovement.x * m_cameraBaseSpeed * Time.deltaTime * (speedUp ? m_cameraSpeedMultiplier : 1);
+			newPosition.z += wantedMovement.y * m_cameraBaseSpeed * Time.deltaTime * (speedUp ? m_cameraSpeedMultiplier : 1);
 
 			transform.position = newPosition;
 		}
@@ -56,4 +64,15 @@ public class CameraManager : Singleton<CameraManager>
 
 	private Vector2 wantedMovement = Vector2.zero;
 	private bool speedUp = false;
+
+	[SerializeField]
+	private float m_cameraMaxSpeed = 10.0f;
+	[SerializeField]
+	private float m_cameraMinSpeed = 0.5f;
+
+	[SerializeField]
+	private float m_cameraBaseSpeed = 5.0f;
+
+	[SerializeField]
+	private float m_cameraSpeedMultiplier = 2.0f;
 }
