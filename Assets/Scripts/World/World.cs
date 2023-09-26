@@ -11,6 +11,8 @@ public class World
 
 	public Tilemap TileMap => m_tileMap;
 
+	public TimeManager TimeManager => m_timeManager;
+
 	public World(Grid grid)
 	{
 		m_grid = grid;
@@ -18,6 +20,9 @@ public class World
 	}
 
 
+	[SerializeField]
+	[HideInInspector]
+	private TimeManager m_timeManager = new TimeManager();
 	[SerializeField]
 	[HideInInspector]
 	private Tilemap m_tileMap = null;

@@ -9,7 +9,10 @@ public class WorldConfig : ScriptableObject
 
 	public InputActionAsset Inputs => m_inputsConfig;
 
+	public TimeConfig TimeConfig => m_timeConfig;
 
+	[SerializeField]
+	private TimeConfig m_timeConfig;
 	[SerializeField]
 	private RulesConfig m_rules;
 	[SerializeField]
