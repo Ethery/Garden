@@ -12,7 +12,7 @@ public class WorldConfig : ScriptableObject
 	public TimeConfig TimeConfig => m_timeConfig;
 
 	[SerializeField]
-	private TimeConfig m_timeConfig;
+	private TimeConfig m_timeConfig = new TimeConfig();
 	[SerializeField]
 	private RulesConfig m_rules;
 	[SerializeField]

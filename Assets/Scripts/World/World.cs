@@ -19,6 +19,11 @@ public class World
 		m_tileMap = m_grid.GetComponentInChildren<Tilemap>();
 	}
 
+	public void Update(float deltaTime)
+	{
+		TimeManager.Update(deltaTime);
+	}
+
 
 	[SerializeField]
 	[HideInInspector]

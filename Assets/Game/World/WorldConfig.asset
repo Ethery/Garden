@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35a60fefb30d584f9d595a5d986de87, type: 3}
   m_Name: WorldConfig
   m_EditorClassIdentifier: 
-  m_rules:
-    SecondsByDay: 10
+  m_timeConfig:
+    TimePerDay: 10
   m_inputsConfig: {fileID: -944628639613478452, guid: fb23b6baa847038478684d597bde6d9e, type: 3}

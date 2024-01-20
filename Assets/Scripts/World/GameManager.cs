@@ -19,6 +19,11 @@ public class GameManager : Singleton<GameManager>
 		World.TileMap.SetTile(new Vector3Int(0, 0, 0), Instantiate(baseTile));
 	}
 
+	private void Update()
+	{
+		World.Update(Time.deltaTime);
+	}
+
 	[SerializeField]
 	private WorldConfig m_config;
 }

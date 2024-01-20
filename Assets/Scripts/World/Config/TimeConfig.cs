@@ -1,4 +1,9 @@
-﻿public class TimeConfig
+﻿using System;
+using UnityEngine;
+
+[Serializable]
+public class TimeConfig
 {
-	public float TimePerDay;
+	[SerializeField]
+	public float TimePerDay = 10;
 }
