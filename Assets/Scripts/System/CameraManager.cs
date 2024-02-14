@@ -1,3 +1,4 @@
+using Game.Systems.Inputs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,14 +15,21 @@ public class CameraManager : Singleton<CameraManager>
 	private void RegisterInputs(bool register)
 	{
 		InputManager.RegisterInput(InputManager.Input.CAMERA_MOVE
-									, new InputManager.InputEvent(OnCameraMovement, InputManager.EventType.Performed | InputManager.EventType.Released)
+									, new InputManager.InputEvent(OnCameraMovement, InputActionChange.ActionPerformed)
+									, register);
+		InputManager.RegisterInput(InputManager.Input.CAMERA_MOVE
+									, new InputManager.InputEvent(OnCameraMovementEnd, InputActionChange.ActionCanceled)
 									, register);
 
-		InputManager.RegisterInput(InputManager.Input.CAMERA_SPEED_UP,
-									new InputManager.InputEvent(OnCameraSpeedUp, InputManager.EventType.Performed | InputManager.EventType.Released)
+		InputManager.RegisterInput(InputManager.Input.CAMERA_SPEED_UP
+									, new InputManager.InputEvent(OnCameraSpeedUp, InputActionChange.ActionPerformed)
 									, register);
-		InputManager.RegisterInput(InputManager.Input.CAMERA_SPEED_CONTROL,
-									new InputManager.InputEvent(OnCameraSpeedControl, InputManager.EventType.Performed | InputManager.EventType.Released)
+		InputManager.RegisterInput(InputManager.Input.CAMERA_SPEED_UP
+									, new InputManager.InputEvent(OnCameraSpeedUp, InputActionChange.ActionCanceled)
+									, register);
+
+		InputManager.RegisterInput(InputManager.Input.CAMERA_SPEED_CONTROL
+									, new InputManager.InputEvent(OnCameraSpeedControl, InputActionChange.ActionPerformed)
 									, register);
 	}
 
@@ -29,6 +37,10 @@ public class CameraManager : Singleton<CameraManager>
 	public void OnCameraMovement(InputAction action)
 	{
 		wantedMovement = action.ReadValue<Vector2>();
+	}
+	public void OnCameraMovementEnd(InputAction action)
+	{
+		wantedMovement = Vector2.zero;
 	}
 
 	public void OnCameraSpeedUp(InputAction action)

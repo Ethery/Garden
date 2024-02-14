@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CameraMovement",
+                    "name": "CAMERA_MOVE",
                     "type": "Value",
                     "id": "27f6f76e-f6aa-4590-acb1-50358b29c4bb",
                     "expectedControlType": "Axis",
@@ -24,10 +24,19 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "CameraSpeedUp",
+                    "name": "CAMERA_SPEED_UP",
                     "type": "Button",
                     "id": "daa14d93-2573-43be-80a3-09f4db4ecffe",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "CAMERA_SPEED_CONTROL",
+                    "type": "Value",
+                    "id": "3be10ec5-a302-41af-9de8-e45c69756bea",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -61,7 +70,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "CAMERA_MOVE",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -72,7 +81,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "CAMERA_MOVE",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -83,7 +92,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "CAMERA_MOVE",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -94,7 +103,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "CAMERA_MOVE",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -105,7 +114,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "CAMERA_MOVE",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -116,7 +125,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraSpeedUp",
+                    "action": "CAMERA_SPEED_UP",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -150,6 +159,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "MouseClick",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "d3bdc2b3-f140-41f8-92ab-4debe8b611b7",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CAMERA_SPEED_CONTROL",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "f3094dae-9c62-43c3-a0a7-d45e915db774",
+                    "path": "<Keyboard>/numpadMinus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CAMERA_SPEED_CONTROL",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "70e606ee-12f6-4f85-bab2-1cbbbb25a18d",
+                    "path": "<Keyboard>/numpadPlus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CAMERA_SPEED_CONTROL",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

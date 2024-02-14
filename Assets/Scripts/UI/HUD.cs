@@ -1,3 +1,4 @@
+using Game.Systems.Inputs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ public class HUD : Singleton<HUD>
 {
 	private void OnEnable()
 	{
-		InputManager.RegisterInput(InputManager.Input.MOUSE_CLICK, new InputManager.InputEvent(OnMouseClick, InputManager.EventType.Performed), true);
+		InputManager.RegisterInput(InputManager.Input.MOUSE_CLICK, new InputManager.InputEvent(OnMouseClick, InputActionChange.ActionPerformed), true);
 		UpdateCurrentValue();
 	}
 
