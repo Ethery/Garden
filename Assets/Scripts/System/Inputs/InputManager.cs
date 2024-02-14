@@ -30,6 +30,7 @@ namespace Game.Systems.Inputs
 			public static Input CAMERA_SPEED_UP = new Input(nameof(CAMERA_SPEED_UP), Group.Default);
 			public static Input CAMERA_SPEED_CONTROL = new Input(nameof(CAMERA_SPEED_CONTROL), Group.Default);
 			public static Input MOUSE_CLICK = new Input(nameof(MOUSE_CLICK), Group.Default);
+			public static Input MOUSE_POS = new Input(nameof(MOUSE_POS), Group.Default);
 
 			public Input(string name, Group group)
 			{
