@@ -9,14 +9,14 @@ public class World
 {
 	public Grid Grid => m_grid;
 
-	public Tilemap TileMap => m_tileMap;
+	public List<Tilemap> TileMaps => m_tileMaps;
 
 	public TimeManager TimeManager => m_timeManager;
 
 	public World(Grid grid)
 	{
 		m_grid = grid;
-		m_tileMap = m_grid.GetComponentInChildren<Tilemap>();
+		m_grid.GetComponentsInChildren(m_tileMaps);
 	}
 
 	public void Update(float deltaTime)
@@ -30,7 +30,7 @@ public class World
 	private TimeManager m_timeManager = new TimeManager();
 	[SerializeField]
 	[HideInInspector]
-	private Tilemap m_tileMap = null;
+	private List<Tilemap> m_tileMaps = null;
 
 	[SerializeField]
 	[HideInInspector]
