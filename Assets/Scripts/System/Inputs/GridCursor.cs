@@ -11,8 +11,8 @@ namespace Game.Systems.Inputs
 	{
 		private void OnEnable()
 		{
-			m_plane = new Plane(GameManager.Instance.World.TileMap.transform.up
-				, GameManager.Instance.World.TileMap.transform.position.magnitude);
+			m_plane = new Plane(GameManager.Instance.World.TileMaps[World.MapLayer.World].transform.up
+				, GameManager.Instance.World.TileMaps[World.MapLayer.World].transform.position.magnitude);
 			RegisterInputs(true);
 		}
 
@@ -25,8 +25,8 @@ namespace Game.Systems.Inputs
 		{
 			if(m_oldMousePosition != m_currentMousePosition)
 			{
-				GameManager.Instance.World.TileMap.SetTile(m_oldMousePosition, null);
-				GameManager.Instance.World.TileMap.SetTile(m_currentMousePosition, m_cursorTile);
+				GameManager.Instance.World.TileMaps[World.MapLayer.UI].SetTile(m_oldMousePosition, null);
+				GameManager.Instance.World.TileMaps[World.MapLayer.UI].SetTile(m_currentMousePosition, m_cursorTile);
 				m_oldMousePosition = m_currentMousePosition;
 			}
 		}
@@ -45,7 +45,7 @@ namespace Game.Systems.Inputs
 			{
 				Vector3 hitPoint = ray.GetPoint(distanceToPlane);
 				//hitPoint = Grid.Swizzle(GameManager.Instance.World.Grid.cellSwizzle, hitPoint);
-				m_currentMousePosition = GameManager.Instance.World.TileMap.WorldToCell(hitPoint);
+				m_currentMousePosition = GameManager.Instance.World.TileMaps[World.MapLayer.UI].WorldToCell(hitPoint);
 			}
 		}
 

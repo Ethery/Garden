@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public class TimeManager
 {
-	public TimeConfig Config => GameManager.Instance.WorldConfig.TimeConfig;
+	public TimeConfig Config => GameManager.Instance.World.Config.TimeConfig;
 
 	public int CurrentDay => Mathf.RoundToInt(m_timeSinceGameStart / Config.TimePerDay);
 

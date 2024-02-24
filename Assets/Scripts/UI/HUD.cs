@@ -46,10 +46,10 @@ public class HUD : Singleton<HUD>
 		{
 			Debug.Log("click on " + hit.point);
 
-			Vector3Int tpos = GameManager.Instance.World.TileMap.WorldToCell(hit.point);
+			Vector3Int tpos = GameManager.Instance.World.TileMaps[World.MapLayer.World].WorldToCell(hit.point);
 
 			// Try to get a tile from cell position
-			TileBase tile = GameManager.Instance.World.TileMap.GetTile(tpos);
+			TileBase tile = GameManager.Instance.World.TileMaps[World.MapLayer.World].GetTile(tpos);
 		}
 	}
 
